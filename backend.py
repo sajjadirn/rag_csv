@@ -38,7 +38,7 @@ async def load_csv_on_startup():
         loader = CSVLoader(file_path=CSV_FILE_PATH, encoding="utf-8", csv_args={'delimiter': ','})
         data = loader.load()
 
-        embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2', model_kwargs={'device': 'cuda'})
+        embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 
         db = FAISS.from_documents(data, embeddings)
         db.save_local(DB_FAISS_PATH)
